@@ -19,7 +19,7 @@ const data = borsh.struct([
     borsh.str('name')
 ])
 const buffer = Buffer.alloc(1000);
-data.encode({ name: 'Poppins' }, buffer);
+data.encode({ name: 'Micheal Cox' }, buffer);
 const instructionBuffer = buffer.slice(0, data.getSpan(buffer));
 
 const connection = new Connection(clusterApiUrl("devnet"));
@@ -37,7 +37,6 @@ const instruction = new TransactionInstruction({
             isSigner: false,
             isWritable: true
         }
-
     ],
     programId: programId,
     data: instructionBuffer

@@ -1,6 +1,8 @@
 import { Keypair, Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 import { getKeypairFromEnvironment } from "@solana-developers/node-helpers";
-import * as dotenv  from "dotenv";
+import * as dotenv from "dotenv";
+import * as borsh from '@project-serum/borsh';
+
 
 dotenv.config()
 
@@ -20,7 +22,26 @@ async function main() {
     console.log(`The secret key is: `, keypair.secretKey);
     //console.log(`The secret key is: `, mykey);
 
+    const projectID = "8VpuXXQNwJ7VUrsnZat5LAhHacA9TjtoEDZSFNCD8kyB";
+    const programId = new PublicKey(projectID);
+
 
     console.log(`✅ Generated keypair!`)
+    const accounts = connection.getProgramAccounts(programId).then(accounts => {
+        accounts.map(({ pubkey, account }) => {
+            console.log('Account:', pubkey)
+            console.log('Encoded Data buffer:', account.data);
+            console.log('Decoded Data buffer:', decode(account.data))
+        })
+      })
 }
 main()
+
+ async function decode(data) {
+    const schema = borsh.struct([
+        borsh.str('name')
+    ])
+
+    const name = schema.decode(data)
+    return name;
+}
