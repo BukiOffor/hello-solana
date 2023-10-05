@@ -30,6 +30,7 @@ export async function createTokenAccount(connection,payer,mint,owner){
     console.log(
         `Token Account: https://explorer.solana.com/address/${tokenAccount.address}?cluster=devnet`
     )
+    return tokenAccount
 }
 
 export async function mintTokens(connection, payer, mint, destination, authority, amount) {
@@ -38,5 +39,15 @@ export async function mintTokens(connection, payer, mint, destination, authority
     )
     console.log(
         `Mint Token Transaction: https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`
+    )
+}
+
+export async function transferTokens(connection, payer, source, destination, owner, amount) {
+    const transactionSignature = await token.transfer(
+        connection, payer, source, destination, owner, amount
+    )
+    console.log(
+        `Transfer Transaction: https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`
+
     )
 }
