@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "name": "intro-to-solana",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@digitak/esrun": "^3.2.24",
+    "@project-serum/borsh": "^0.2.5",
+    "@solana-developers/node-helpers": "^1.0.4",
+    "@solana/spl-token": "^0.3.8",
+    "@solana/web3.js": "^1.78.5",
+    "bigint-buffer": "^1.1.5",
+    "dotenv": "^16.3.1"
+  }
+}
