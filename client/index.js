@@ -21,12 +21,12 @@ main().catch((err) => {
 })
 
 async function main() {
-    const tokenMint = await createNewMint(connection, payer, payer.publicKey, payer.publicKey, 6); //Gs33seStwP3dJFQ5cYJsiADzZRkWwTWpHZX3hvTzh7ez
-    //const mintInfo = await token.getMint(connection, tokenMint);
-    const tokenAccount = await createTokenAccount(connection,payer,tokenMint,payer.publicKey) 
+    const mint = await createNewMint(connection, payer, payer.publicKey, payer.publicKey, 6); //Gs33seStwP3dJFQ5cYJsiADzZRkWwTWpHZX3hvTzh7ez
+    const mintInfo = await token.getMint(connection, mint);
+    const tokenAccount = await createTokenAccount(connection,payer,mint,payer.publicKey) 
     console.log(tokenMint);
     const signature = await mintTokens(
-        connection, payer, tokenMint, tokenAccount.address, payer, "100"*"10" ** 6
+        connection, payer, mint, tokenAccount.address, payer, "100"*"10" ** 6
     )
 
 }
