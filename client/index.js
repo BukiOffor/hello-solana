@@ -6,7 +6,7 @@ import {
 } from "@solana/web3.js";
 import * as borsh from '@project-serum/borsh';
 import * as fs from "fs";
-import { createNewMint } from "./token.js";
+import { createNewMint, createTokenAccount, mintTokens } from "./token.js";
 import * as token from '@solana/spl-token'
 
 
@@ -22,8 +22,13 @@ main().catch((err) => {
 
 async function main() {
     const tokenMint = await createNewMint(connection, payer, payer.publicKey, payer.publicKey, 6); //Gs33seStwP3dJFQ5cYJsiADzZRkWwTWpHZX3hvTzh7ez
-    const mintInfo = await token.getMint(connection, tokenMint);
-    console.log(mintInfo);
+    //const mintInfo = await token.getMint(connection, tokenMint);
+    const tokenAccount = await createTokenAccount(connection,payer,tokenMint,payer.publicKey) 
+    console.log(tokenMint);
+    const signature = await mintTokens(
+        connection, payer, tokenMint, tokenAccount.address, payer, "100"*"10" ** 6
+    )
+
 }
 
 
