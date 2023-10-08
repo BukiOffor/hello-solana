@@ -17,14 +17,12 @@ async function main() {
 
     console.log(balance);
 
-
     console.log(`The public key is: `, keypair.publicKey.toBase58());
     console.log(`The secret key is: `, keypair.secretKey);
     //console.log(`The secret key is: `, mykey);
 
     const projectID = "8VpuXXQNwJ7VUrsnZat5LAhHacA9TjtoEDZSFNCD8kyB";
     const programId = new PublicKey(projectID);
-
 
     console.log(`✅ Generated keypair!`)
     const accounts = connection.getProgramAccounts(programId).then(accounts => {
@@ -41,7 +39,6 @@ main()
     const schema = borsh.struct([
         borsh.str('name')
     ])
-
     const name = schema.decode(data)
     return name;
 }
