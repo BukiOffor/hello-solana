@@ -23,7 +23,7 @@ main().catch((err) => {
 })
 
 async function main() {
-    const mint = await createNewMint(connection, payer, payer.publicKey, payer.publicKey, 6); //Gs33seStwP3dJFQ5cYJsiADzZRkWwTWpHZX3hvTzh7ez
+    const mint = await createNewMint(connection, payer, payer.publicKey, payer.publicKey, 6); 
     const mintInfo = await token.getMint(connection, mint);
     const tokenAccount = await createTokenAccount(connection,payer,mint,payer.publicKey) 
     console.log(mintInfo)
