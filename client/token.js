@@ -1,5 +1,14 @@
 import * as token from '@solana/spl-token'
 
+// when it comes to this token stuff in solana, sol is not like eth.
+// a mint account has to be created and that mint account will have an authority.
+// all the mint account does is mints token to a specific address
+// the address is not just a random address, but the address is generated for that particular mint
+// and the owner of that address will be the intented receiptent of the token.
+
+// say i own wallet A and need a token from mint Y. my wallet will be made the owner of ADDRESS C
+// that the tokens will be minted to. Then wallet A can spend the tokens because it is the owner.
+
 export async function createNewMint(
     connection,
     payer,
